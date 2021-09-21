@@ -1,0 +1,17 @@
+body {
+    background: whitesmoke;
+}
+
+img {
+    height: 150px;
+}
+
+.form-group {
+    width: 60%;
+    margin-left: 5%;
+}
+
+.buttonForm {
+    margin-left: 5%;
+    background-color: #696e70;
+}

@@ -1,0 +1,21 @@
+<div>
+    <h2>Supprimer un article</h2>
+
+
+    <form action="<?=buildUrl('/delete', ['articleid' => $article['articleid']]);?>" method="POST">
+
+        <fieldset>
+            <div>
+                <label for="title">Titre</label>
+                <input type="text" id="title" name="title" value="<?=$article['title'];?>">
+            </div>
+            <div>
+                <label for="author">Auteur</label>
+                <input type="text" id="author" name="author" value="<?=$article['author'];?>">
+            </div>
+
+        </fieldset>
+
+        <input type="submit" value="supprimer">
+    </form>
+</div>

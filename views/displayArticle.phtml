@@ -1,0 +1,26 @@
+<h1>J'affiche mon article</h1>
+
+<article>
+
+
+        <h3 class="m-3"><?= htmlspecialchars($article['title']); ?></h3>
+        <div class="m-3">Ecrit par :<?= htmlspecialchars($article['author']);?>
+
+        <h3 class="m-3"><?= htmlspecialchars($article['articleid']); ?>ID</h3>
+
+         <p class="m-3">paru le <?= date('d/m/Y',strtotime(htmlspecialchars($article['createdAt']))); ?>
+        </p>
+
+        <figure class="m-3">
+            <img src="upload/img/<?= htmlspecialchars($article['image']);?>" alt="texte" id="img">
+            <figcaption>La légende de l'image ! </figcaption>
+        </figure>
+        <div class="m-3"><?= htmlspecialchars($article['content']); ?></div>
+
+    <span>
+    <a  href="<?= buildUrl('/update', ['articleid'=> intval($article['articleid'])]);?>">Update article </a>
+    </span>
+    <span>
+    <a  href="<?= buildUrl('/delete', ['articleid'=> intval($article['articleid'])]);?>">Delete article </a>
+    </span>
+</article>
