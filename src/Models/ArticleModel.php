@@ -30,7 +30,25 @@ class ArticleModel extends Model{
 
         // Récupération des résultats
         return self::$database->fetchOneRow($sql, [$articleId]);
-       
+    }
+    function getKeyword(): array
+    {
+        $sql ='SELECT *
+        FROM keyword as K 
+        ORDER BY word';
+    
+        // Récupération des résultats
+        return self::$database->fetchAllRows($sql);
+    }
+    function getKeywordByArticleId(int $articleId): array
+    {
+        $sql ='SELECT K.word AS word, AK.article_id, AK.keyword_id  FROM keyword as K 
+        LEFT JOIN article_keyword AS AK ON K.id = AK.keyword_id 
+        LEFT JOIN article AS A ON AK.article_id = A.id 
+        WHERE A.id = ?';
+    
+        // Récupération des résultats
+        return self::$database->fetchAllRows($sql, [$articleId]);
     }
 
 // tipage des paramètres string = title
@@ -47,6 +65,14 @@ class ArticleModel extends Model{
      */
     // DATE_FORMAT(completion, "%d/%m/%Y")
     // DATE_FORMAT("2018-09-24", "%M %d %Y")
+
+    function insertIntoArticleKeyword(int $articleId, int $keywordId){
+        $sql = 'INSERT INTO article_keyword (article_id, keyword_id) 
+        VALUES (?, ?)';
+
+    return self::$database->insertQueryBis($sql, [$articleId,  $keywordId]);
+    }
+
     function updateArticle(string $title, string $content, string $author, string $image, int $categoryId, int $articleid)
     {
         $sql = 'UPDATE article 

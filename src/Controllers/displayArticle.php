@@ -15,10 +15,10 @@ $articleId = $_GET['articleid'];
 
 $articleModel = new ArticleModel();
 $article = $articleModel->getOneArticle($articleId);
-
+$keywords = $articleModel->getKeywordByArticleId($articleId);
 
 render('displayArticle', [
 'article' => $article,
-
+'keywords' =>$keywords
 ]);
 

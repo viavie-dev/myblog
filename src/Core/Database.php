@@ -99,6 +99,17 @@ class Database {
         return $this->pdo->lastInsertId();
 
     }
+
+    function insertQueryBis(string $sql, array $values = [])
+    {
+
+// On commence par préparer la requête SQL
+        $query = $this->pdo->prepare($sql);
+
+// Exécution de la requête
+        return  $query->execute($values);
+
+    }
 }
 
 

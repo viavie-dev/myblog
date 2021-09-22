@@ -1,26 +1,27 @@
-<h1>J'affiche mon article</h1>
+<h2 class="d-flex justify-content-center m-3">J'affiche mon article</h1>
 
 <article>
 
+    <div class="card m-3">
+        <img class="card-img-top img-fluid" style="width:200px"src="upload/img/<?= htmlspecialchars($article['image']);?>" alt="Card image cap" >
+    <div class="card-body">
+    <h5 class="card-title"><?= htmlspecialchars($article['title']); ?></h5>
+    <p class="card-text">Ecrit par :<?= htmlspecialchars($article['author']);?></p>
+    <p class="card-text"><?= htmlspecialchars($article['content']); ?></p>
+    <p class="card-text"><small class="text-muted">Paru le <?= date('d/m/Y',strtotime(htmlspecialchars($article['createdAt']))); ?></small></p>
+    <ul class="display_keyword">
+            <li>Les mots clefs :</li>
+        <?php foreach($keywords as $keyword): ?>
+            <li><?= htmlspecialchars($keyword['word']); ?></li>
+        <?php endforeach ?>
+        </ul>
+    </div>
+    </div>
 
-        <h3 class="m-3"><?= htmlspecialchars($article['title']); ?></h3>
-        <div class="m-3">Ecrit par :<?= htmlspecialchars($article['author']);?>
-
-        <h3 class="m-3"><?= htmlspecialchars($article['articleid']); ?>ID</h3>
-
-         <p class="m-3">paru le <?= date('d/m/Y',strtotime(htmlspecialchars($article['createdAt']))); ?>
-        </p>
-
-        <figure class="m-3">
-            <img src="upload/img/<?= htmlspecialchars($article['image']);?>" alt="texte" id="img">
-            <figcaption>La légende de l'image ! </figcaption>
-        </figure>
-        <div class="m-3"><?= htmlspecialchars($article['content']); ?></div>
-
-    <span>
+    <span class="m-3">
     <a  href="<?= buildUrl('/update', ['articleid'=> intval($article['articleid'])]);?>">Update article </a>
     </span>
-    <span>
+    <span class="m-3">
     <a  href="<?= buildUrl('/delete', ['articleid'=> intval($article['articleid'])]);?>">Delete article </a>
     </span>
 </article>

@@ -1,19 +1,19 @@
 <h1 class="d-flex justify-content-center m-3">Extraits d' articles</h1>
     
 
-<div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
     <?php foreach($articles as $article): ?>
 
-        <div class="card m-3" style="width: 18rem;">
+    <div class="card m-3" style="width: 18rem;">
             <img class="card-img-top" src="upload/img/<?=htmlspecialchars($article['image']);?>" alt="Card image cap">
         <div class="card-body">
         <h5 class="card-title"><?=htmlspecialchars($article['title']);?></h5>
-        <h4 class="card-title"><?=htmlspecialchars($article['author']);?></h4>
-        <h4 class="card-title"><?=htmlspecialchars($article['articleid']);?>ID</h4>
+        <h4 class="card-title"><?=htmlspecialchars($article['author']);?></h4>     
         <p class="card-text"><?=htmlspecialchars(mb_substr($article['content'], 0, 150, 'UTF-8'));?></p>
         <p>Sorti le : <time datetime="<?= htmlspecialchars($article['createdAt']);?>"><?= date('d/m/Y',strtotime(htmlspecialchars($article['article']))); ?></time></p>
-    <a href="<?= buildUrl('/article', ['articleid'=> intval($article['articleid'])]);?>" class="btn buttonForm">Lire la suite</a>
+            <a href="<?= buildUrl('/article', ['articleid'=> intval($article['articleid'])]);?>" class="btn buttonForm">Lire la suite</a>
+        </div>
+    </div>       
+    <?php endforeach;?>
     </div>
-</div>       
-<?php endforeach;?>
 

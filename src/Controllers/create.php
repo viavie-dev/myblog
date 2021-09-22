@@ -14,13 +14,24 @@ if (!empty($_POST)) {
     $author = $_POST['author'];
     $image = $_POST['image'];  
     $categoryId = $_POST['category'];
+    $keywords = $_POST['keywords'];
     
+    //dd($keywords);
 
-// insertion de l'article en BDD
+    
+    // insertion de l'article en BDD
     $articleModel = new ArticleModel();
-    $articleId = $articleModel->insertArticle($title, $content, $author, $image, $categoryId);
-    //une fois la réponse envoyé il n' ya pas de header location possible
 
+    
+    $articleId = $articleModel->insertArticle($title, $content, $author, $image, $categoryId);
+    
+    foreach($keywords as $key => $value){
+        $keywordId = $value;
+        //var_dump($keywordId);
+        
+        $articleModel->insertIntoArticleKeyword($articleId, $keywordId);
+        }
+    
     
 // ajout d'un flash message de réussite
 
@@ -33,7 +44,11 @@ if (!empty($_POST)) {
 $categoryModel = new CategoryModel();
 $categories = $categoryModel->getAllCategories();
 
+$articleModel = new ArticleModel();
+$keywords = $articleModel->getKeyword();
+
 render('create', [
     'categories' => $categories,
+    'keywords' => $keywords
 
 ]);
