@@ -14,6 +14,9 @@
     <li class="nav-item">
         <a class="nav-link" href="<?= buildUrl('/create');?>">Create an article</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="<?= buildUrl('/advancedSearch');?>">Recherche avancée</a>
+    </li>
     </ul>
 
     <form class="form-inline my-2 my-lg-0" action="<?=buildUrl('/');?>" method="GET" enctype="multipart/form-data">
@@ -28,10 +31,7 @@
     <section>
         <h1 class="d-flex justify-content-center m-3">Extraits d' articles</h1>
 
-    <p style="text-align:center;">il y a  <?php if ($articles == null): ?>
-    0<?php endif; ?><?php if ($articles != null): ?><?php $keys = array_keys($articles);
-$lastKey = $keys[count($keys)-1]; echo $lastKey+1?><?php endif; ?>
-    résultat correspondant à votre recherche</p>    
+    <p style="text-align:center;"><?= $message;?></p>    
         
     <div class="d-flex justify-content-center">
     <?php foreach($articles as $article): ?>

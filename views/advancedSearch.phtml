@@ -1,0 +1,31 @@
+
+    <h2 style="text-align:center;">Recherche avancée</h2>
+        
+    <form action="<?=buildUrl('/advancedSearch');?>" method="GET" enctype="multipart/form-data">
+
+    <select name="category" class="custom-select m-3" style="width:80%">
+    <label for="category">Catégorie</label>
+            <?php foreach($categories as $category): ?>
+
+                        <option value="<?=htmlspecialchars($category['id']);?>"><?=htmlspecialchars($category['name']);?></option>
+            <?php endforeach; ?>
+        
+    </select>
+
+    <select name="author" class="custom-select m-3" style="width:80%">
+    <label for="author">Auteur</label>
+            <?php foreach($articles as $article): ?>                
+                        <option value="<?=htmlspecialchars($article['author']);?>"><?=htmlspecialchars($article['author']);?></option>
+            <?php endforeach; ?>
+        
+    </select>
+
+    <select name="keyword" class="custom-select m-3" style="width:80%">
+    <label for="keyword">Mot clef</label>
+    <?php foreach($keywords as $keyword): ?>                
+                        <option value="<?=htmlspecialchars($keyword['id']);?>"><?=htmlspecialchars($keyword['word']);?></option>
+            <?php endforeach; ?>
+        
+    </select>
+    <input class="buttonForm" type="submit" value="Rechercher">
+    </form>

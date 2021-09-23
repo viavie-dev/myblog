@@ -104,6 +104,16 @@ class ArticleModel extends Model{
 
         return self::$database->fetchAllRows($sql, [$query]);
     }
+    function selectMultiple(){
+
+        $sql = 'SELECT A.id AS articleid, author, C.name AS category, K.word AS keyword 
+        FROM article A 
+        INNER JOIN category AS C ON A.categoryId = C.id 
+        LEFT JOIN article_keyword AS AK ON A.id = AK.article_id 
+        LEFT JOIN keyword AS K ON AK.keyword_id = K.id';
+
+        return self::$database->fetchAllRows($sql);
+    }
 
 }
 
