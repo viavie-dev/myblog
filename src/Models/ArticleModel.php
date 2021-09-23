@@ -96,6 +96,12 @@ class ArticleModel extends Model{
         self::$database->executeQuery($sql, [$articleId]);
     }
 
+    function deleteArticleKeywords(int $articleId)
+    {
+        $sql = 'DELETE  FROM article_keyword WHERE article_id = ?';
+        self::$database->executeQuery($sql, [$articleId]);
+    }
+
     function selectArticle(string $query){
 
         $sql = 'SELECT * FROM article 

@@ -24,12 +24,19 @@ if (!empty($_POST)) {
     $categoryId = $_POST['category'];
     $keywords = $_POST['keywords'];
 
+    // var_dump($_POST);
+    // die;
     $articleModel->updateArticle($title, $content, $author, $image, $categoryId, $articleId);
 
+    // delete values keywords
+    $articleModel->deleteArticleKeywords($articleId );
     foreach($keywords as $key => $value){
         $keywordId = $value;
-                
-        $articleModel->updateArticleKeyword($articleId, $keywordId);
+        
+    
+        $articleModel->insertIntoArticleKeyword($articleId, $keywordId);
+
+    
     }
     // Redirection vers le dashboard admin
     header('Location: ' . buildUrl('/'));

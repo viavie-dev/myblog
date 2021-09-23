@@ -38,6 +38,7 @@
         <label for="keywords">Ajout de mot clefs </label>
         <select multiple="multiple" name="keywords[]">
             <?php foreach($keywords as $keyword): ?>
+        
             <option value="<?=$keyword['id'];?>"><?=$keyword['word'];?></option>
             <?php endforeach; ?>
         </select>
