@@ -22,36 +22,8 @@ if (!empty($_POST)) {
     // var_dump($_POST);
     // die;
 
-    
-    // if cat not null and author not null
-    if($category != 0 || $author != '' ){
 
-        // traitement de cat et author 
-
-        // if cat not null and author not null and keyword not null 
-        if($keyword != 0){
-
-            // traitement de keyword
-        // if cat not null and author not null and keyword null 
-        }else{
-            // aucun traitement de keyword exit 
-        }
-
-        // if cat null and author null 
-    }else if($category == 0 || $author == '' ){
-
-        // aucun traitement
-        if($keyword != 0){
-            //traitement de keyword only
-        }
-
-        }
-    }
-
-
-
-}
-
+}    
 
 render('advancedSearch', [
     'articles' => $articles,
