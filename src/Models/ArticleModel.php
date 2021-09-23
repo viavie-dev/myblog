@@ -3,8 +3,6 @@ namespace App\Models;
 
 use App\Core\Model;
 
-
-
 class ArticleModel extends Model{
 
 
@@ -81,6 +79,14 @@ class ArticleModel extends Model{
 
         self::$database->executeQuery($sql, [$title, $content, $author, $image, $categoryId, $articleid]);
     }
+
+    function updateArticleKeyword(int $articleId, int $keywordId){
+        $sql = 'UPDATE article_keyword
+        SET keyword_id = ?
+        WHERE article_id = ?
+        '; 
+        self::$database->executeQuery($sql, [$articleId, $keywordId]);
+    }
     /**
      * delete an article
      */
@@ -88,6 +94,14 @@ class ArticleModel extends Model{
     {
         $sql = 'DELETE  FROM article WHERE id = ?';
         self::$database->executeQuery($sql, [$articleId]);
+    }
+
+    function selectArticle(string $query){
+        $sql = 'SELECT * FROM article 
+        WHERE (article.title LIKE \'%'.$query.'%\' 
+        OR article.content LIKE \'%'.$query.'%\') ';
+
+        return self::$database->fetchAllRows($sql, [$query]);
     }
 
 }

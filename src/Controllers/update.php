@@ -22,10 +22,15 @@ if (!empty($_POST)) {
     $author = $_POST['author'];
     $image =  $_POST['image'];
     $categoryId = $_POST['category'];
- 
-    
+    $keywords = $_POST['keywords'];
+
     $articleModel->updateArticle($title, $content, $author, $image, $categoryId, $articleId);
 
+    foreach($keywords as $key => $value){
+        $keywordId = $value;
+                
+        $articleModel->updateArticleKeyword($articleId, $keywordId);
+    }
     // Redirection vers le dashboard admin
     header('Location: ' . buildUrl('/'));
     exit;
@@ -38,8 +43,12 @@ $article = $articleModel->getOneArticle($articleId);
 $categoryModel = new \App\Models\CategoryModel();
 $categories = $categoryModel->getAllCategories();
 
+$articleModel = new ArticleModel();
+$keywords = $articleModel->getKeyword();
+
 // Affichage du template
 render('update', [
     'categories' => $categories,
-    'article' => $article
+    'article' => $article, 
+    'keywords' => $keywords
 ]);

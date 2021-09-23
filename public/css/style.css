@@ -1,5 +1,9 @@
 body {
-    background: whitesmoke;
+    background: white;
+}
+
+.navbar {
+    background-color: rgb(148, 148, 190);
 }
 
 img {
@@ -13,17 +17,25 @@ img {
 
 .buttonForm {
     margin-left: 5%;
-    background-color: #696e70;
+    background-color: rgb(148, 148, 190);
 }
 
 ul.display_keyword li {
     display: inline;
     text-align: center;
     margin: 0;
-    background-color: #696e70;
+    background-color: rgb(148, 148, 190);
 }
 
 a {
     text-decoration: none;
     color: black
+}
+
+.btn-outline-success {
+    background-color: rgb(38, 38, 104);
+}
+
+.btn {
+    background-color: rgb(148, 148, 190);
 }

@@ -24,12 +24,10 @@ switch ($route) {
     case '/article':
         require CONTROLLERS_DIR . '/displayArticle.php';
         break;
-   
-  
+
     case '/create':
         require CONTROLLERS_DIR . '/create.php';
         break;
-
     
     case '/update':
     require CONTROLLERS_DIR . '/update.php';
@@ -37,6 +35,10 @@ switch ($route) {
 
     case '/delete':
         require CONTROLLERS_DIR . '/delete.php';
+        break;
+
+    case '/searchBar':
+        require CONTROLLERS_DIR . '/searchBar.php';
         break;
 }
 
