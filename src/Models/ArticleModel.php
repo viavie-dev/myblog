@@ -110,31 +110,35 @@ class ArticleModel extends Model{
 
         return self::$database->fetchAllRows($sql, [$query]);
     }
-    function selectMultiple(){
-
-        $sql = 'SELECT A.id AS articleid, author, C.name AS category, K.word AS keyword 
-        FROM article A 
-        INNER JOIN category AS C ON A.categoryId = C.id 
-        LEFT JOIN article_keyword AS AK ON A.id = AK.article_id 
-        LEFT JOIN keyword AS K ON AK.keyword_id = K.id';
-
-        return self::$database->fetchAllRows($sql);
-    }
-
+    
     function search(array $filters) {
         
-        $sql = 'SELECT * FROM article a WHERE 1 ';
+        $sql = 'SELECT * FROM article a 
+        LEFT JOIN article_keyword AS AK ON A.id = AK.article_id 
+        LEFT JOIN keyword AS K ON AK.keyword_id = K.id
+        WHERE 1 ';
 
         if (array_key_exists('categoryId', $filters)) {
-            $sql .= 'AND a.category_id = '.$filters['categoryId'].' ';
+            $sql .= 'AND  a.categoryId = '.$filters['categoryId'].'';
         }
 
         if (array_key_exists('author', $filters)) {
-            $sql .= 'AND a.author LIKE %\''.$filters['author'].'%\' ';
+            $sql .= ' OR a.author LIKE \'%'.$filters['author'].'%\' ';
         }
-
+        if (array_key_exists('keywordId', $filters)) {
+            $sql .= 'OR  k.id = '.$filters['keywordId'].' ';
+        }
         return self::$database->fetchAllRows($sql);
+
+        // SELECT * FROM article a 
+        // LEFT JOIN article_keyword AS AK ON A.id = AK.article_id 
+        // LEFT JOIN keyword AS K ON AK.keyword_id = K.id 
+        // WHERE 1 
+        // AND a.categoryId = 1 
+        // OR a.author LIKE '%Musso%' 
+        // OR k.id = 3
     }
+
 
 
 }

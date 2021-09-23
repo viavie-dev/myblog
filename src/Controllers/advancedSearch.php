@@ -10,17 +10,18 @@ $categoryModel = new \App\Models\CategoryModel();
 $categories = $categoryModel->getAllCategories();
 
 if (!empty($_POST)) {
-    $category = htmlspecialchars($_POST['category']);
+    $categoryId = htmlspecialchars($_POST['category']);
     $author = htmlspecialchars($_POST['author']);
-    $keyword =  htmlspecialchars($_POST['keyword']);
+    $keywordId =  htmlspecialchars($_POST['keyword']);
 
-    $categories = $articleModel->search([
-        'categorieId' => $category,
+    $selectedArticles = $articleModel->search([
+        'categoryId' => intval($category),
         'author' => $author,
+        'keywordId' => intval($keywordId)
     ]);
 
-    // var_dump($_POST);
-    // die;
+    dd($selectedArticles);
+    
 
 
 }    
