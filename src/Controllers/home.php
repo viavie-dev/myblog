@@ -12,14 +12,11 @@ else {
     $query = strtolower($query);
     //dd($query);
     $articles= $articleModel->selectArticle($query);
-    //dd($selectedArticles);
-
-    if($selectedArticles == null){
-        $message =  'il n\'existe aucun résultat à votre recherche';
-    }
+    //dd($articles);
 }
+
 
 render('home', [
     'articles' => $articles, 
-    'message'   => $message
+
 ]);

@@ -28,7 +28,10 @@
     <section>
         <h1 class="d-flex justify-content-center m-3">Extraits d' articles</h1>
 
-    <p><?= $message ?></p>    
+    <p style="text-align:center;">il y a  <?php if ($articles == null): ?>
+    0<?php endif; ?><?php if ($articles != null): ?><?php $keys = array_keys($articles);
+$lastKey = $keys[count($keys)-1]; echo $lastKey+1?><?php endif; ?>
+    résultat correspondant à votre recherche</p>    
         
     <div class="d-flex justify-content-center">
     <?php foreach($articles as $article): ?>
