@@ -121,6 +121,22 @@ class ArticleModel extends Model{
         return self::$database->fetchAllRows($sql);
     }
 
+    function search(array $filters) {
+        
+        $sql = 'SELECT * FROM article a WHERE 1 ';
+
+        if (array_key_exists('categoryId', $filters)) {
+            $sql .= 'AND a.category_id = '.$filters['categoryId'].' ';
+        }
+
+        if (array_key_exists('author', $filters)) {
+            $sql .= 'AND a.author LIKE %\''.$filters['author'].'%\' ';
+        }
+
+        return self::$database->fetchAllRows($sql);
+    }
+
+
 }
 
 

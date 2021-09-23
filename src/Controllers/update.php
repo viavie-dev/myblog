@@ -32,10 +32,8 @@ if (!empty($_POST)) {
     $articleModel->deleteArticleKeywords($articleId );
     foreach($keywords as $key => $value){
         $keywordId = $value;
-        
-    
+            
         $articleModel->insertIntoArticleKeyword($articleId, $keywordId);
-
     
     }
     // Redirection vers le dashboard admin

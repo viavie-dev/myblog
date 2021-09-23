@@ -1,31 +1,40 @@
 
-    <h2 style="text-align:center;">Recherche avancée</h2>
+        <h2 style="text-align:center;">Recherche avancée</h2>
         
-    <form action="<?=buildUrl('/advancedSearch');?>" method="GET" enctype="multipart/form-data">
-
-    <select name="category" class="custom-select m-3" style="width:80%">
-    <label for="category">Catégorie</label>
-            <?php foreach($categories as $category): ?>
+        <form action="<?=buildUrl('/advancedSearch');?>" method="POST" enctype="multipart/form-data">
+        <div class="form-group m-2">
+        <label for="category">Catégorie</label>
+        <select name="category" class="custom-select m-3" style="width:80%">
+    
+                <option value="" selected></option>
+                <?php foreach($categories as $category): ?>
 
                         <option value="<?=htmlspecialchars($category['id']);?>"><?=htmlspecialchars($category['name']);?></option>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         
-    </select>
+        </select>
+        </div>
 
-    <select name="author" class="custom-select m-3" style="width:80%">
-    <label for="author">Auteur</label>
-            <?php foreach($articles as $article): ?>                
+        <div class="form-group m-2">
+        <label for="author">Auteur</label>
+        <select name="author" class="custom-select m-3" style="width:80%">        
+                <option value="" selected></option>
+                <?php foreach($articles as $article): ?>                
                         <option value="<?=htmlspecialchars($article['author']);?>"><?=htmlspecialchars($article['author']);?></option>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         
-    </select>
+        </select>
+        </div>
 
-    <select name="keyword" class="custom-select m-3" style="width:80%">
-    <label for="keyword">Mot clef</label>
-    <?php foreach($keywords as $keyword): ?>                
+        <div class="form-group m-2">
+        <label for="keyword">Mot clef</label>
+        <select name="keyword" class="custom-select m-3" style="width:80%">        
+                <option value="" selected></option>
+                <?php foreach($keywords as $keyword): ?>                
                         <option value="<?=htmlspecialchars($keyword['id']);?>"><?=htmlspecialchars($keyword['word']);?></option>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         
-    </select>
-    <input class="buttonForm" type="submit" value="Rechercher">
-    </form>
+        </select>
+        <div>
+        <input class="buttonForm" type="submit" value="Rechercher">
+        </form>
