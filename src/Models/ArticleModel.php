@@ -97,6 +97,7 @@ class ArticleModel extends Model{
     }
 
     function selectArticle(string $query){
+
         $sql = 'SELECT * FROM article 
         WHERE (article.title LIKE \'%'.$query.'%\' 
         OR article.content LIKE \'%'.$query.'%\') ';

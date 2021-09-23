@@ -16,7 +16,7 @@
     </li>
     </ul>
 
-    <form class="form-inline my-2 my-lg-0" action="<?=buildUrl('/searchBar');?>" method="POST" enctype="multipart/form-data">
+    <form class="form-inline my-2 my-lg-0" action="<?=buildUrl('/');?>" method="GET" enctype="multipart/form-data">
     <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
     </form>
@@ -28,6 +28,8 @@
     <section>
         <h1 class="d-flex justify-content-center m-3">Extraits d' articles</h1>
 
+    <p><?= $message ?></p>    
+        
     <div class="d-flex justify-content-center">
     <?php foreach($articles as $article): ?>
 

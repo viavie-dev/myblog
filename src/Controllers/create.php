@@ -1,9 +1,9 @@
 <?php
-namespace App\Models;
+
 
 // Import des classes
 use App\Models\ArticleModel;
-
+use App\Models\CategoryModel;
 
 // si le formulaire est soumis
 if (!empty($_POST)) {

@@ -37,9 +37,7 @@ switch ($route) {
         require CONTROLLERS_DIR . '/delete.php';
         break;
 
-    case '/searchBar':
-        require CONTROLLERS_DIR . '/searchBar.php';
-        break;
+    
 }
 
 
