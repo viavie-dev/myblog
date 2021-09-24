@@ -14,27 +14,18 @@ if (!empty($_POST)) {
     $author = htmlspecialchars($_POST['author']);
     $keywordId =  htmlspecialchars($_POST['keyword']);
 
-    $selectedArticles = $articleModel->search([
+    $selectedArticlesByArt = $articleModel->searchArticle([
         'categoryId' => intval($category),
-        'author' => $author,
-        'keywordId' => intval($keywordId)
+        'author' => $author,     
     ]);
 
-    //dd($selectedArticles);
+   
     
-        foreach($selectedArticles as $key =>$value){
-        //dd($selectedArticles[$key]['article_id']);
-        $selectedArray[]= $selectedArticles[$key]['article_id'];
-      
-        dd($selectedArray);
-
-        //  if($selectedArticles[$key]['article_id'] != $selectedArray){
-        //  $selectedArray = $selectedArticles[$key]['article_id'];
-        //  }
-        
-            //dd($selectedArray);
-        }
-
+    $selectedArticlesByKey = $articleModel->searchKeyword([        
+        'keywordId' => intval($keywordId)
+    ]);  
+    
+    dd($selectedArticlesByArt, $selectedArticlesByKey);
 }    
 
 render('advancedSearch', [

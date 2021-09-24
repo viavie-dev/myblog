@@ -111,35 +111,37 @@ class ArticleModel extends Model{
         return self::$database->fetchAllRows($sql, [$query]);
     }
     
-    function search(array $filters) {
+    function searchArticle(array $filters) {
         
-        $sql = 'SELECT * FROM article a 
-        LEFT JOIN article_keyword AS AK ON A.id = AK.article_id 
-        LEFT JOIN keyword AS K ON AK.keyword_id = K.id
+        $sql = 'SELECT * FROM article a
         WHERE 1 ';
 
-        if (array_key_exists('categoryId', $filters)) {
+        if (array_key_exists('categoryId', $filters) && !empty($filters['categoryId'])) {
             $sql .= 'AND  a.categoryId = '.$filters['categoryId'].'';
         }
 
-        if (array_key_exists('author', $filters)) {
-            $sql .= ' OR a.author LIKE \'%'.$filters['author'].'%\' ';
+        if (array_key_exists('author', $filters) && !empty($filters['author']) ) {
+            $sql .= ' AND a.author LIKE \'%'.$filters['author'].'%\' ';
         }
-        if (array_key_exists('keywordId', $filters)) {
-            $sql .= 'OR  k.id = '.$filters['keywordId'].' ';
-        }
+
+        
+
+        //dd($sql);
         return self::$database->fetchAllRows($sql);
+}
 
-        // SELECT * FROM article a 
-        // LEFT JOIN article_keyword AS AK ON A.id = AK.article_id 
-        // LEFT JOIN keyword AS K ON AK.keyword_id = K.id 
-        // WHERE 1 
-        // AND a.categoryId = 1 
-        // OR a.author LIKE '%Musso%' 
-        // OR k.id = 3
+    function searchKeyword(array $filters) {
+        
+    $sql = 'SELECT * FROM article_keyword ak
+    WHERE 1 ';
+
+    if (array_key_exists('keywordId', $filters) && !empty($filters['keywordId']) ) {
+            $sql .= 'AND ak.keyword_id = '.$filters['keywordId'].' ';
     }
+    
+    return self::$database->fetchAllRows($sql);
 
-
+}
 
 }
 
